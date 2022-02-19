@@ -6,8 +6,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.example.application.common.extension.setContentView
 import timber.log.Timber
 
 abstract class BaseActivity<V : ViewDataBinding>(@LayoutRes private val layOutId: Int) :
@@ -16,7 +16,7 @@ abstract class BaseActivity<V : ViewDataBinding>(@LayoutRes private val layOutId
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityBinding = DataBindingUtil.setContentView(this, layOutId)
+        activityBinding = layOutId.setContentView(this)
         setContentView(activityBinding.root)
     }
 
