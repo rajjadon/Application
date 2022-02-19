@@ -1,6 +1,7 @@
-package com.example.application
+package com.example.application.common
 
 import android.app.Application
+import com.example.application.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
