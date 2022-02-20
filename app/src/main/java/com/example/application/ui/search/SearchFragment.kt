@@ -4,7 +4,9 @@ import com.example.application.R
 import com.example.application.common.BaseFragment
 import com.example.application.databinding.FragmentSearchBinding
 import com.example.application.ui.search.adapter.SearchAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val searchAdapter by lazy { SearchAdapter() }
     override fun setObserver() {
