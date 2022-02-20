@@ -1,4 +1,4 @@
-package com.example.application.repo.detailsRepo
+package com.example.application.data.repo.detailsRepo
 
 import com.example.application.data.model.DataState
 import com.example.application.data.model.DetailsModel

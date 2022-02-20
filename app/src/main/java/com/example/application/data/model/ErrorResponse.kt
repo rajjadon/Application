@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class ErrorResponse(
 
     @Json(name = "Response")
-    val response: String,
+    val response: Boolean,
     @Json(name = "message")
     val message: String,
 )

@@ -1,4 +1,4 @@
-package com.example.application.repo.searchRepo
+package com.example.application.data.repo.searchRepo
 
 import com.example.application.data.model.DataState
 import com.example.application.data.model.SearchModel
