@@ -22,11 +22,12 @@ class SearchFragmentViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _searchedMovies = MutableSharedFlow<List<Search>>()
-    val movies: MutableList<Search> = emptyList<Search>().toMutableList()
+    private val movies: MutableList<Search> = emptyList<Search>().toMutableList()
     val searchedMovies = _searchedMovies.toSharedFlow()
 
     fun searchMovies(type: String, query: String, page: Int) {
         viewModelScope.launch {
+
             searchApiRepo.searchMovies(type, query, page).onEach {
                 when (it) {
                     is DataState.Error -> {
@@ -37,7 +38,7 @@ class SearchFragmentViewModel @Inject constructor(
                     DataState.Loading -> dataLoading.setIsLoading(true)
                     is DataState.Success -> {
                         dataLoading.setIsLoading(false)
-                        if (movies.isEmpty())
+                        if (movies.isNotEmpty() && page == 1)
                             movies.clear()
                         movies.addAll(it.baseResponseData.search)
                         _searchedMovies.emit(movies)

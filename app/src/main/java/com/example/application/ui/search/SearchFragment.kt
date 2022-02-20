@@ -5,6 +5,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.application.R
@@ -60,7 +61,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             override fun afterTextDebounced(editable: Editable?) {
                 if (editable.toString().length > 3) {
                     querry = editable.toString().trim()
-                    searchFragmentViewModel.movies.clear()
                     pageNumber = 1
                     searchFragmentViewModel.searchMovies(type, querry, pageNumber)
                 }
@@ -68,7 +68,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         })
 
         searchAdapter.listener = { view, item, position ->
-
+            findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
         }
     }
 
