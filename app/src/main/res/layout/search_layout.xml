@@ -2,13 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="searchFragmentViewModel"
-            type="com.example.rajassginment.ui.search.viewmodel.SearchFragmentViewModel" />
-
-    </data>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
