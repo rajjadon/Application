@@ -41,7 +41,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         fragmentBinding.include.searchEditText.addTextChangedListener(object :
             DebouncedTextWatcher(viewLifecycleOwner.lifecycle) {
             override fun afterTextDebounced(editable: Editable?) {
-                searchFragmentViewModel.searchMovies(editable.toString().trim(), "", 1)
+                if (editable.toString().length > 3)
+                    searchFragmentViewModel.searchMovies("movie", editable.toString().trim(), 1)
             }
         })
 

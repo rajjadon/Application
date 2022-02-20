@@ -53,7 +53,7 @@ private fun convertErrorBody(throwable: HttpException): ErrorResponse? {
             moshiAdapter.fromJson(it)
         }
     } catch (exception: Exception) {
-        ErrorResponse(true, getErrorMessage(throwable.code()))
+        ErrorResponse(true.toString(), getErrorMessage(throwable.code()))
     }
 }
 

@@ -5,7 +5,7 @@
     tools:context=".ui.search.SearchFragment">
 
     <data>
-
+        <import type="android.view.View" />
         <variable
             name="adapter"
             type="com.example.application.ui.search.adapter.SearchAdapter" />
@@ -47,6 +47,7 @@
             android:textColor="@android:color/darker_gray"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -8,7 +8,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/bookMarksFragment"
+        android:id="@+id/detailsFragment"
         android:enabled="true"
         android:icon="@drawable/ic_bookmark_border"
         android:menuCategory="secondary"

@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        app:cardBackgroundColor="#202038"
         app:cardCornerRadius="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,62 +26,64 @@
             <ImageView
                 android:id="@+id/moviePoster"
                 loadImage="@{searchedObj.poster}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:contentDescription="@string/app_name"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/movieTittle"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="10dp"
-                android:text="@{`Tittle: `+searchedObj.title}"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:layout_marginEnd="10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                app:layout_constraintBottom_toBottomOf="@+id/moviePoster"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/moviePoster"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Tittle" />
+                app:layout_constraintTop_toTopOf="@+id/moviePoster">
 
-            <TextView
-                android:id="@+id/movieYear"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{`Year: `+searchedObj.year}"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/moviePoster"
-                app:layout_constraintTop_toBottomOf="@+id/movieTittle"
-                tools:text="MovieYear" />
+                <TextView
+                    android:id="@+id/movieTittle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxEms="20"
+                    android:text="@{`Title: `+searchedObj.title}"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Tittle" />
 
-            <TextView
-                android:id="@+id/movieType"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{`Type: `+searchedObj.type}"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/moviePoster"
-                app:layout_constraintTop_toBottomOf="@+id/movieYear"
-                tools:text="Type" />
+                <TextView
+                    android:id="@+id/movieYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Year: `+searchedObj.year}"
+                    android:textColor="@color/white"
+                    tools:text="MovieYear" />
 
-            <TextView
-                android:id="@+id/movieImdb"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{`Imdb: `+searchedObj.imdbID}"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/moviePoster"
-                app:layout_constraintTop_toBottomOf="@+id/movieType"
-                tools:text="Imdb" />
+                <TextView
+                    android:id="@+id/movieType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Type: `+searchedObj.type}"
+                    android:textColor="@color/white"
+                    tools:text="Type" />
+
+                <TextView
+                    android:id="@+id/movieImdb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{`Imdb: `+searchedObj.imdbID}"
+                    android:textColor="@color/white"
+                    tools:text="Imdb" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

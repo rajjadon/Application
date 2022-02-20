@@ -14,11 +14,6 @@ abstract class BaseFragment<V : ViewBinding>(@LayoutRes private val layOutId: In
 
     lateinit var fragmentBinding: V
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setObserver()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +21,11 @@ abstract class BaseFragment<V : ViewBinding>(@LayoutRes private val layOutId: In
     ): View {
         fragmentBinding = layOutId.inflateLayout(inflater, container)
         return fragmentBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setObserver()
     }
 
     override fun onStart() {
