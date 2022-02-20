@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,11 +31,13 @@ class SearchFragmentViewModel @Inject constructor(
                     is DataState.Error -> {
                         dataLoading.setIsLoading(false)
                         dataLoading.setApiError(it.errorMessage)
+                        Timber.e(it.errorMessage)
                     }
                     DataState.Loading -> dataLoading.setIsLoading(true)
                     is DataState.Success -> {
                         dataLoading.setIsLoading(false)
                         _searchedMovies.emit(it.baseResponseData)
+                        Timber.e(it.baseResponseData.toString())
                     }
                 }
             }.launchIn(viewModelScope)

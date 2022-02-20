@@ -7,6 +7,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.application.R
 import com.example.application.common.BaseFragment
+import com.example.application.common.DataLoading
 import com.example.application.databinding.FragmentSearchBinding
 import com.example.application.ui.search.adapter.SearchAdapter
 import com.example.application.ui.search.viewModel.SearchFragmentViewModel
@@ -14,11 +15,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import primathon.android.core.debounce.DebouncedTextWatcher
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val searchAdapter by lazy { SearchAdapter() }
     private val searchFragmentViewModel by activityViewModels<SearchFragmentViewModel>()
+
+    @Inject
+    lateinit var dataLoading: DataLoading
 
     override fun setObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -28,12 +33,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             )
                 .collect {
                     searchAdapter.submitList(it.search)
+                    fragmentBinding.adapter = searchAdapter
                 }
         }
+
     }
 
     override fun setUpBindingVariables() {
-        fragmentBinding.adapter = searchAdapter
     }
 
     override fun setClickListener() {

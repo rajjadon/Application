@@ -2,6 +2,7 @@ package com.example.application.data.networkWapper
 
 import com.example.application.data.model.DataState
 import com.example.application.data.model.ErrorResponse
+import com.example.application.data.networkWapper.networkMapper.NetworkMapper
 import com.squareup.moshi.Moshi
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -13,17 +14,18 @@ enum class ErrorCodes(val code: Int) {
 
 open class SafeApiRequest
 @Inject constructor(
-    private val networkHelper: NetworkHelper
+    private val networkHelper: NetworkHelper,
+    private val networkMapper: NetworkMapper
 ) {
     suspend fun <T : Any> apiRequest(dataRequest: suspend () -> T): DataState<T> {
         return try {
             if (networkHelper.isNetworkConnected()) {
-                DataState.Success(dataRequest.invoke())
+                val invoke = dataRequest.invoke()
+                networkMapper.mapFromServerResponse(invoke)
             } else {
                 val throwable = NoInternetException("Please check your Internet Connection")
                 DataState.Error(throwable, throwable.message.toString())
             }
-
         } catch (throwable: Throwable) {
             when (throwable) {
                 is HttpException -> {
