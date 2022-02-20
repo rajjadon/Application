@@ -1,0 +1,26 @@
+package com.example.application.ui.search.adapter
+
+import androidx.recyclerview.widget.DiffUtil
+import com.example.application.R
+import com.example.application.common.BaseAdapter
+import com.example.application.data.model.Search
+import com.example.application.databinding.SearchItemsBinding
+
+class SearchAdapter :
+    BaseAdapter<Search, SearchItemsBinding>(object : DiffUtil.ItemCallback<Search>() {
+        override fun areItemsTheSame(oldItem: Search, newItem: Search): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Search, newItem: Search): Boolean {
+            return oldItem.title == newItem.title && oldItem.poster == newItem.poster && oldItem.imdbID == newItem.imdbID && oldItem.type == newItem.type
+        }
+
+    }, R.layout.search_items) {
+    override fun bind(viewBinding: SearchItemsBinding, item: Search, position: Int) {
+        viewBinding.searchedObj = item
+        viewBinding.cardView.setOnClickListener {
+            listener(it, item, position)
+        }
+    }
+}
