@@ -5,6 +5,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.application.R
 import com.example.application.common.BaseFragment
 import com.example.application.common.DataLoading
@@ -21,6 +23,13 @@ import javax.inject.Inject
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val searchAdapter by lazy { SearchAdapter() }
     private val searchFragmentViewModel by activityViewModels<SearchFragmentViewModel>()
+    private var visibleItemCount = 0
+    private var totalItemCount = 0
+    private var pastVisibleItems = 0
+    private var pageNumber = 1
+    private lateinit var layoutManager: LinearLayoutManager
+    private var type = "movie"
+    private var querry = ""
 
     @Inject
     lateinit var dataLoading: DataLoading
@@ -32,26 +41,51 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                 Lifecycle.State.STARTED
             )
                 .collect {
-                    searchAdapter.submitList(it.search)
+                    searchAdapter.submitList(it)
                     fragmentBinding.adapter = searchAdapter
                 }
         }
     }
 
-    override fun setUpBindingVariables() {}
+    override fun setUpBindingVariables() {
+        layoutManager = LinearLayoutManager(requireContext())
+        fragmentBinding.rvMovie.layoutManager = layoutManager
+        addPagination()
+    }
 
     override fun setClickListener() {
 
         fragmentBinding.include.searchEditText.addTextChangedListener(object :
             DebouncedTextWatcher(viewLifecycleOwner.lifecycle) {
             override fun afterTextDebounced(editable: Editable?) {
-                if (editable.toString().length > 3)
-                    searchFragmentViewModel.searchMovies("movie", editable.toString().trim(), 1)
+                if (editable.toString().length > 3) {
+                    querry = editable.toString().trim()
+                    searchFragmentViewModel.movies.clear()
+                    pageNumber = 1
+                    searchFragmentViewModel.searchMovies(type, querry, pageNumber)
+                }
             }
         })
 
         searchAdapter.listener = { view, item, position ->
 
         }
+    }
+
+    private fun addPagination() {
+        fragmentBinding.rvMovie.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) { //check for scroll down
+                    visibleItemCount = layoutManager.childCount
+                    totalItemCount = layoutManager.itemCount
+                    pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
+                    if (visibleItemCount + pastVisibleItems >= totalItemCount) {
+                        pageNumber += 1
+                        searchFragmentViewModel.searchMovies(type, querry, pageNumber)
+                    }
+                }
+            }
+        })
     }
 }
