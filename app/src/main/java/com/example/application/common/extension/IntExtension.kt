@@ -1,6 +1,5 @@
 package com.example.application.common.extension
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity

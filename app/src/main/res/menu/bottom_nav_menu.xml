@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/searchFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_search"
+        android:menuCategory="secondary"
+        android:title="" />
+
+    <item
+        android:id="@+id/bookMarksFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_bookmark_border"
+        android:menuCategory="secondary"
+        android:title="" />
+</menu>

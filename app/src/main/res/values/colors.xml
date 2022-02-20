@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#080825</color>
+    <color name="colorPrimaryVariant">#007AFF</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="search_hint_color">#AFAEAE</color>
+    <color name="grayTextColor">#7A7B99</color>
+    <color name="recording_progress">#FC3E30</color>
+    <color name="transparent">#00000000</color>
+    <color name="editTextUnderLineColor">#3A3A59</color>
+    <color name="redColor">#F44336</color>
+    <color name="greenColor">#34C759</color>
+    <color name="search_bar_bg">#202038</color>
+    <color name="color_FF460A">#FF460A</color>
+    <color name="color_9499A1">#9499A1</color>
+    <color name="color_EBEBF5">#EBEBF5</color>
+    <color name="color_0A84FF">#448AFF</color>
+    <color name="color_6D768E">#6D768E</color>
+    <color name="color_3A77F2">#3A77F2</color>
+    <color name="example_5_text_grey_light">#616161</color>
 </resources>
