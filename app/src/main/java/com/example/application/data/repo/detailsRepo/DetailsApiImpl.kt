@@ -1,11 +1,17 @@
 package com.example.application.data.repo.detailsRepo
 
+import com.example.application.data.apiServices.MovieApiServices
 import com.example.application.data.model.DataState
-import com.example.application.data.model.DetailsModel
-import kotlinx.coroutines.flow.Flow
+import com.example.application.data.networkWapper.SafeApiRequest
+import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class DetailsApiImpl : DetailsApiRepo {
-    override suspend fun getDetails(plot: String, tittle: String): Flow<DataState<DetailsModel>> {
-        TODO("Not yet implemented")
+class DetailsApiImpl @Inject constructor(
+    private val safeApiRequest: SafeApiRequest,
+    private val movieApiServices: MovieApiServices
+) : DetailsApiRepo {
+    override suspend fun getMovieDetail(plot: String, tittle: String) = flow {
+        emit(DataState.Loading)
+        emit(safeApiRequest.apiRequest { movieApiServices.getMovieDetail(plot, tittle) })
     }
 }
