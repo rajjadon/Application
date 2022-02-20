@@ -36,11 +36,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                     fragmentBinding.adapter = searchAdapter
                 }
         }
-
     }
 
-    override fun setUpBindingVariables() {
-    }
+    override fun setUpBindingVariables() {}
 
     override fun setClickListener() {
 

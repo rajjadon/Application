@@ -3,8 +3,6 @@ package com.example.application.ui
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.example.application.R
 import com.example.application.common.BaseActivity
 import com.example.application.common.DataLoading
@@ -23,8 +21,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun onStart() {
         super.onStart()
-        initNavHost()
-
         lifecycleScope.launch {
 
             launch {
@@ -41,11 +37,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     }
             }
         }
-    }
-
-    private fun initNavHost() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.navContainer) as NavHostFragment
-        activityBinding.navView.setupWithNavController(navHostFragment.navController)
     }
 }
