@@ -28,7 +28,7 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(
-        @ApplicationContext application: Context,
+        @ApplicationContext application: Context
     ): Retrofit.Builder {
         return Retrofit.Builder()
             .client(OkHttpClient().newBuilder().apply {
