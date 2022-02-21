@@ -9,11 +9,11 @@ import com.example.application.databinding.SearchItemsBinding
 class SearchAdapter :
     BaseAdapter<Search, SearchItemsBinding>(object : DiffUtil.ItemCallback<Search>() {
         override fun areItemsTheSame(oldItem: Search, newItem: Search): Boolean {
-            return oldItem === newItem
+            return oldItem.imdbID == newItem.imdbID
         }
 
         override fun areContentsTheSame(oldItem: Search, newItem: Search): Boolean {
-            return oldItem.title == newItem.title && oldItem.poster == newItem.poster && oldItem.imdbID == newItem.imdbID && oldItem.type == newItem.type
+            return oldItem == newItem
         }
 
     }, R.layout.search_items) {

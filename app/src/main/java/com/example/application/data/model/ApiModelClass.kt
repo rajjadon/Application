@@ -56,7 +56,7 @@ data class DetailsModel(
     @Json(name = "Rated")
     val rated: String = "",
     @Json(name = "Ratings")
-    val ratings: List<Rating>,
+    val ratings: MutableList<Rating> = emptyList<Rating>().toMutableList(),
     @Json(name = "Released")
     val released: String = "",
     @Json(name = "Response")

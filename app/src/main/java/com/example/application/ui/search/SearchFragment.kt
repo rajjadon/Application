@@ -31,6 +31,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     private lateinit var layoutManager: LinearLayoutManager
     private var type = "movie"
     private var querry = ""
+    private val searchFragmentArgs =
+        SearchFragmentDirections.actionSearchFragmentToDetailsFragment()
 
     @Inject
     lateinit var dataLoading: DataLoading
@@ -67,8 +69,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             }
         })
 
-        searchAdapter.listener = { view, item, position ->
-            findNavController().navigate(R.id.action_searchFragment_to_detailsFragment)
+        searchAdapter.listener = { _, item, _ ->
+            findNavController().navigate(searchFragmentArgs.apply {
+                tittle = item.title
+            })
         }
     }
 

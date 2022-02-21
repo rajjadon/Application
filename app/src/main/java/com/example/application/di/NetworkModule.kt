@@ -3,7 +3,6 @@ package com.example.application.di
 import android.content.Context
 import com.example.application.BuildConfig
 import com.example.application.data.apiServices.MovieApiServices
-import com.example.application.data.networkWapper.NetworkHelper
 import com.squareup.moshi.*
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -30,7 +29,6 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(
         @ApplicationContext application: Context,
-        networkHelper: NetworkHelper
     ): Retrofit.Builder {
         return Retrofit.Builder()
             .client(OkHttpClient().newBuilder().apply {
@@ -47,15 +45,8 @@ object NetworkModule {
                 retryOnConnectionFailure(true)
                 addInterceptor(Interceptor { chain ->
                     chain.proceed(
-                        if (networkHelper.isNetworkConnected()) {
-                            chain.request().newBuilder()
-                                .header("Cache-Control", "public, max-age=" + 60).build()
-                        } else {
-                            chain.request().newBuilder().header(
-                                "Cache-Control",
-                                "public, only-if-cached, max-stale=" + 60 * 60 * 24 * 7
-                            ).build()
-                        }
+                        chain.request().newBuilder()
+                            .header("Cache-Control", "public, max-age=" + 60).build()
                     )
                 })
             }.build())

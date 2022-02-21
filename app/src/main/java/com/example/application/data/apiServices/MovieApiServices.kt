@@ -17,6 +17,6 @@ interface MovieApiServices {
     @GET(BuildConfig.API_BASE_URL)
     suspend fun getMovieDetail(
         @Query("plot") plot: String,
-        @Query("tittle") tittle: String
+        @Query("t") tittle: String
     ): DetailsModel
 }
