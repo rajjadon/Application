@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="@{`Title: `+searchedObj.title}"
+                    android:text="@{searchedObj.title}"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -65,7 +65,7 @@
                     android:id="@+id/movieYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{`Year: `+searchedObj.year}"
+                    android:text="@{`Year : `+searchedObj.year}"
                     android:textColor="@color/white"
                     tools:text="MovieYear" />
 
@@ -73,7 +73,7 @@
                     android:id="@+id/movieType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{`Type: `+searchedObj.type}"
+                    android:text="@{`Type : `+searchedObj.type}"
                     android:textColor="@color/white"
                     tools:text="Type" />
 
@@ -81,7 +81,7 @@
                     android:id="@+id/movieImdb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{`Imdb: `+searchedObj.imdbID}"
+                    android:text="@{`Imdb : `+searchedObj.imdbID}"
                     android:textColor="@color/white"
                     tools:text="Imdb" />
 

@@ -1,7 +1,7 @@
 package com.example.application.ui.search
 
 import android.text.Editable
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +23,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
     private val searchAdapter by lazy { SearchAdapter() }
-    private val searchFragmentViewModel by activityViewModels<SearchFragmentViewModel>()
+    private val searchFragmentViewModel by viewModels<SearchFragmentViewModel>()
     private var visibleItemCount = 0
     private var totalItemCount = 0
     private var pastVisibleItems = 0
@@ -42,11 +42,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             searchFragmentViewModel.searchedMovies.flowWithLifecycle(
                 viewLifecycleOwner.lifecycle,
                 Lifecycle.State.STARTED
-            )
-                .collect {
-                    searchAdapter.submitList(it)
-                    fragmentBinding.adapter = searchAdapter
-                }
+            ).collect {
+                searchAdapter.submitList(it)
+                fragmentBinding.adapter = searchAdapter
+            }
         }
     }
 
@@ -74,6 +73,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                 tittle = item.title
             })
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        searchFragmentViewModel.searchMovies(type, querry, pageNumber)
     }
 
     private fun addPagination() {

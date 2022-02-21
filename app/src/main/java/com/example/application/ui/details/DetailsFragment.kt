@@ -1,6 +1,6 @@
 package com.example.application.ui.details
 
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>(R.layout.fragment_details) {
 
-    private val viewModel by activityViewModels<DetailsViewModel>()
+    private val viewModel by viewModels<DetailsViewModel>()
     private var plot = "full"
 
     override fun setObserver() {
